@@ -1,10 +1,18 @@
 import "./App.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Home from "./pages/Home";
 
 function App() {
   return (
-    <div>
-      Hello from <a href="https://www.lereacteur.io">Le Reacteur !</a>
-    </div>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path={"/"} element={<Home />} />
+      </Routes>
+    </Router>
   );
 }
 
