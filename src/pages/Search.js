@@ -1,21 +1,25 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useParams } from "react-router";
 import { useNavigate } from "react-router";
+import { useState, useEffect } from "react";
 import Game from "../components/Game";
-import Pagination from "../components/Pagination";
 
-const Home = () => {
-  const [isLoading, setIsLoading] = useState(false);
+const Search = () => {
   const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [search, setSearch] = useState("");
+
+  const { title } = useParams();
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/");
-
+        const response = await axios.get(
+          `http://localhost:4000/search?title=${title}`
+        );
+        console.log(response.data);
         setData(response.data);
         setIsLoading(true);
       } catch (error) {
@@ -23,7 +27,7 @@ const Home = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [title]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -31,7 +35,7 @@ const Home = () => {
   };
 
   return isLoading ? (
-    <main>
+    <div className="search-result-wrapper">
       <h1>Gamepad</h1>
 
       <form onSubmit={handleSubmit} className="searching-input">
@@ -47,12 +51,10 @@ const Home = () => {
           return <Game key={index} game={game} />;
         })}
       </div>
-
-      <Pagination data={data} />
-    </main>
+    </div>
   ) : (
-    <div>Downloading</div>
+    <p>Downloading</p>
   );
 };
 
-export default Home;
+export default Search;

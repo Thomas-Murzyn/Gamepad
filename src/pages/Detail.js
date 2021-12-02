@@ -1,26 +1,37 @@
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Game from "../components/Game";
 
 const Detail = () => {
   const [data, setData] = useState(null);
+  const [gamesData, setGamesData] = useState(null);
   const [isLoading, setIsloading] = useState(false);
+
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:4000/game/${id}`);
-        console.log(response.data);
+
+        const secondResponse = await axios.get(
+          `http://localhost:4000/similar_game/${response.data.slug}`
+        );
+
         setData(response.data);
+        setGamesData(secondResponse.data);
         setIsloading(true);
       } catch (error) {
         console.log(error.message);
       }
     };
     fetchData();
-  }, []);
 
-  const { id } = useParams();
+    return () => {
+      console.log("Counter Destroyed");
+    };
+  }, [id]);
 
   return isLoading ? (
     <div className="detail-wrapper">
@@ -82,7 +93,7 @@ const Detail = () => {
 
                 <div className="detail-p">
                   <p>Age rating</p>
-                  <p>{data.esrb_rating.name}</p>
+                  <p>{data.esrb_rating?.name}</p>
                 </div>
               </div>
             </div>
@@ -92,6 +103,14 @@ const Detail = () => {
 
       <div className="similar-games">
         <h2>{`Games like ${data.name}`}</h2>
+
+        <div className="similar-games-list">
+          {gamesData.results.map((game, index) => {
+            if (index < 5) {
+              return <Game key={index} game={game} />;
+            }
+          })}
+        </div>
       </div>
     </div>
   ) : (

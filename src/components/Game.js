@@ -10,7 +10,7 @@ const Game = ({ game }) => {
         navigate(`/detail/${game.id}`);
       }}
     >
-      <img src={game.background_image} alt="" />
+      <img src={game.background_image} alt={game.name} />
 
       <div className="titleContainer">
         <h3>{game.name}</h3>

@@ -10,7 +10,8 @@ body {
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 45px;
+  letter-spacing: 1.5px;
   margin-top: 30px;
   text-align: center;
   font-weight: 600;
@@ -28,11 +29,20 @@ h3 {
 /* Header */
 
 header {
+  border-bottom: #ff4655 2px solid;
+  padding: 15px 0;
+}
+
+.header-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 30px;
-  border-bottom: #ff4655 2px solid;
+  width: 90vw;
+  margin: 0 auto;
+}
+
+.header-wrapper h2 {
+  font-weight: 600;
 }
 
 nav {
@@ -61,17 +71,34 @@ main {
   margin: 0 auto;
 }
 
+.searching-input {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.searching-input input {
+  height: 60px;
+  width: 25%;
+  padding: 0 10px;
+  font-size: 25px;
+  border: 1px solid #1f2023;
+  border-radius: 5px;
+}
+
 .allGames {
   margin-top: 50px;
   width: 100%;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 40px 20px;
 }
 
 .game {
-  width: calc((100% / 5) - 60px);
-  height: 250px;
+  width: calc((100% / 5) - 16px);
+  height: 300px;
   border: 1px solid #202020;
   border-radius: 10px;
   background-color: #151515;
@@ -125,6 +152,7 @@ main {
   height: 300px;
   border: 1px solid #151515;
   border-radius: 10px;
+  object-fit: cover;
 }
 
 .detail-game {
@@ -191,7 +219,17 @@ main {
   -webkit-box-orient: vertical;
 }
 
+/* details similar game section */
+
 .similar-games {
   margin-top: 50px;
   text-align: center;
+}
+
+.similar-games-list {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }

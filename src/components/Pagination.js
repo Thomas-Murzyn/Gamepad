@@ -5,11 +5,12 @@ const Pagination = ({ data }) => {
   const [paginate, setPaginate] = useState(5);
 
   const tab = [];
-  console.log(data.count);
+
   const pages = () => {
     for (let i = paginate - 4; i <= paginate; i++) {
       tab.push(
         <button
+          key={i}
           onClick={() => {
             if (page !== 1 || page !== 2 || page !== 3 || page !== 4) {
               setPage(i);
