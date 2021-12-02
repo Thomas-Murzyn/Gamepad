@@ -233,3 +233,34 @@ main {
   justify-content: center;
   gap: 20px;
 }
+
+/* Search */
+
+.search-result-wrapper {
+  width: 90vw;
+  margin: 0 auto;
+}
+
+.select-wrapper {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.select-wrapper select,
+button {
+  background-color: #404040;
+  color: white;
+  border: 1px solid #404040;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.select-container-1 select:nth-child(2) {
+  margin-left: 20px;
+}
+
+.select-container-2 select:nth-child(1) {
+  margin-right: 20px;
+}
