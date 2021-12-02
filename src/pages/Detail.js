@@ -89,6 +89,10 @@ const Detail = () => {
           </div>
         </div>
       </div>
+
+      <div className="similar-games">
+        <h2>{`Games like ${data.name}`}</h2>
+      </div>
     </div>
   ) : (
     <div>DownLoading</div>
