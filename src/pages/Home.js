@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Game from "../components/Game";
+import Pagination from "../components/Pagination";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,9 +27,11 @@ const Home = () => {
 
       <div className="allGames">
         {data.results.map((game, index) => {
-          return <Game name={game.name} picture={game.background_image} />;
+          return <Game key={index} game={game} />;
         })}
       </div>
+
+      <Pagination data={data} />
     </main>
   ) : (
     <div>Downloading</div>

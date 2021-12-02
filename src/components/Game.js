@@ -1,12 +1,19 @@
-const Game = ({ name, picture }) => {
+import { useNavigate } from "react-router";
+
+const Game = ({ game }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className="game">
-      <div className="pictureContainer">
-        <img src={picture} alt="" />
-      </div>
+    <div
+      className="game"
+      onClick={() => {
+        navigate(`/detail/${game.id}`);
+      }}
+    >
+      <img src={game.background_image} alt="" />
 
       <div className="titleContainer">
-        <h3>{name}</h3>
+        <h3>{game.name}</h3>
       </div>
     </div>
   );
