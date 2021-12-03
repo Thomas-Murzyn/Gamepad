@@ -43,6 +43,12 @@ header {
 
 .header-wrapper h2 {
   font-weight: 600;
+  font-size: 29px;
+}
+
+.header-wrapper div {
+  display: flex;
+  align-items: center;
 }
 
 nav {
@@ -108,14 +114,16 @@ main {
 }
 
 .game img {
-  flex: 4;
+  height: 80%;
+  width: 100%;
   object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
 .titleContainer {
-  flex: 1;
+  width: 100%;
+  height: 20%;
   padding-left: 10px;
   display: flex;
   align-items: center;
@@ -259,8 +267,4 @@ button {
 
 .select-container-1 select:nth-child(2) {
   margin-left: 20px;
-}
-
-.select-container-2 select:nth-child(1) {
-  margin-right: 20px;
 }

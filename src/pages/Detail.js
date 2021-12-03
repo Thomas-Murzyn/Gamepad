@@ -105,11 +105,15 @@ const Detail = () => {
         <h2>{`Games like ${data.name}`}</h2>
 
         <div className="similar-games-list">
-          {gamesData.results.map((game, index) => {
-            if (index < 5) {
-              return <Game key={index} game={game} />;
-            }
-          })}
+          {gamesData.results.length > 0 ? (
+            gamesData.results.map((game, index) => {
+              if (index < 5) {
+                return <Game key={index} game={game} />;
+              }
+            })
+          ) : (
+            <h2>No similar games found for this game.</h2>
+          )}
         </div>
       </div>
     </div>
