@@ -41,9 +41,13 @@ header {
   margin: 0 auto;
 }
 
+.header-wrapper img {
+  width: 50px;
+}
+
 .header-wrapper h2 {
   font-weight: 600;
-  font-size: 29px;
+  font-size: 35px;
 }
 
 .header-wrapper div {
@@ -52,7 +56,7 @@ header {
 }
 
 nav {
-  width: 20%;
+  width: 25%;
   display: flex;
   justify-content: space-around;
 }
@@ -63,6 +67,7 @@ header button {
   background-color: #1f2023;
   border: 1px solid #1f2023;
   color: white;
+  cursor: pointer;
 }
 
 .login-button {
@@ -255,16 +260,91 @@ main {
   justify-content: space-between;
 }
 
-.select-wrapper select,
-button {
+.select-wrapper select {
   background-color: #404040;
   color: white;
   border: 1px solid #404040;
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
+  font-size: 18px;
 }
 
 .select-container-1 select:nth-child(2) {
   margin-left: 20px;
+}
+
+.loading-wrapper {
+  margin-top: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.search-result {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.search-result p {
+  margin-top: 10px;
+}
+
+.login-wrapper {
+  width: 30vw;
+  margin: 50px auto;
+  text-align: center;
+  background-color: #fff;
+  color: #404040;
+}
+
+.login-wrapper form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-wrapper h2 {
+  padding-top: 20px;
+}
+
+.login-wrapper form div {
+  margin-top: 30px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+}
+
+.login-wrapper form div input {
+  margin-top: 10px;
+  width: 100%;
+  height: 30px;
+  border: 1px solid #404040;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+.login-button-form {
+  margin-top: 50px;
+  background-color: #ff4655;
+  border: 1px solid #ff4655;
+  border-radius: 5px;
+  padding: 5px 0;
+  width: 80%;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+.login-wrapper form p {
+  margin: 10px 0;
+  cursor: pointer;
 }

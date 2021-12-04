@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 import Game from "../components/Game";
+import Loading from "../components/Loading";
 
 const Search = () => {
   const [data, setData] = useState(null);
@@ -49,6 +50,11 @@ const Search = () => {
         />
       </form>
 
+      <div className="search-result">
+        <h2>{`Search result for ${title}`}</h2>
+        <p>{`${data.count} games`}</p>
+      </div>
+
       <div className="select-wrapper">
         <div className="select-container-1">
           <select
@@ -62,13 +68,27 @@ const Search = () => {
             <option value="16">PS3</option>
             <option value="15">PS2</option>
             <option value="27">PS1</option>
+            <option value="19">PS Vita</option>
+            <option value="17">PSP</option>
             <option value="186">Xbox series S-X</option>
             <option value="1">Xbox One</option>
             <option value="14">Xbox 360</option>
             <option value="3">Xbox</option>
             <option value="4">PC</option>
-            <option value="5">Mac os</option>
+            <option value="5">Mac Os</option>
             <option value="7">Nintendo switch</option>
+            <option value="83">Nintendo 64</option>
+            <option value="10">Wii U</option>
+            <option value="105">GameCube</option>
+            <option value="24">Game Boy Advance</option>
+            <option value="8">Nintendo 3DS</option>
+            <option value="9">Nintendo DS</option>
+            <option value="13">Nintendo DSI</option>
+            <option value="3">IOS</option>
+            <option value="21">Android</option>
+            <option value="8">Nintendo 3DS</option>
+            <option value="107">Sega Saturn</option>
+            <option value="112">Jaguar</option>
           </select>
 
           <select
@@ -115,7 +135,9 @@ const Search = () => {
       </div>
     </div>
   ) : (
-    <p>Downloading</p>
+    <div className="loading-wrapper">
+      <Loading />
+    </div>
   );
 };
 

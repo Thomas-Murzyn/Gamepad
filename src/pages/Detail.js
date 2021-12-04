@@ -2,6 +2,7 @@ import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Game from "../components/Game";
+import Loading from "../components/Loading";
 
 const Detail = () => {
   const [data, setData] = useState(null);
@@ -118,7 +119,9 @@ const Detail = () => {
       </div>
     </div>
   ) : (
-    <div>DownLoading</div>
+    <div className="loading-wrapper">
+      <Loading />
+    </div>
   );
 };
 

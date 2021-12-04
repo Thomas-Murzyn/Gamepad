@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import Game from "../components/Game";
 import Pagination from "../components/Pagination";
+import Loading from "../components/Loading";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -51,7 +52,9 @@ const Home = () => {
       <Pagination data={data} />
     </main>
   ) : (
-    <div>Downloading</div>
+    <div className="loading-wrapper">
+      <Loading />
+    </div>
   );
 };
 
