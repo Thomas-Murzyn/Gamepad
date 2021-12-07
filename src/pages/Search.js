@@ -23,7 +23,7 @@ const Search = () => {
         const response = await axios.get(
           `http://localhost:4000/search?title=${title}&platforms=${platform}&genres=${type}&ordering=${ordering}`
         );
-        console.log(response.data);
+
         setData(response.data);
         setIsLoading(true);
       } catch (error) {

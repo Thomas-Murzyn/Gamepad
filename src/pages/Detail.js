@@ -4,10 +4,11 @@ import axios from "axios";
 import Game from "../components/Game";
 import Loading from "../components/Loading";
 
-const Detail = () => {
+const Detail = ({ token }) => {
   const [data, setData] = useState(null);
   const [gamesData, setGamesData] = useState(null);
   const [isLoading, setIsloading] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const { id } = useParams();
 
@@ -20,6 +21,16 @@ const Detail = () => {
           `http://localhost:4000/similar_game/${response.data.slug}`
         );
 
+        const thirdResponse = await axios.get(
+          `http://localhost:4000/favorite/getOne/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        setIsFavorite(thirdResponse.data.value);
         setData(response.data);
         setGamesData(secondResponse.data);
         setIsloading(true);
@@ -28,11 +39,44 @@ const Detail = () => {
       }
     };
     fetchData();
+  }, [id, token, isFavorite]);
 
-    return () => {
-      console.log("Counter Destroyed");
-    };
-  }, [id]);
+  const addToFavorite = async () => {
+    try {
+      const response = await axios.post(
+        `http://localhost:4000/favorite/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data);
+      setIsFavorite(true);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const removeToFavorite = async () => {
+    try {
+      const response = await axios.post(
+        `http://localhost:4000/favorite/delete/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      console.log(response.data);
+      setIsFavorite(false);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return isLoading ? (
     <div className="detail-wrapper">
@@ -42,7 +86,11 @@ const Detail = () => {
           <img src={data.background_image} alt={`${data.name}`} />
           <div className="detail-game">
             <div className="detail-button-container">
-              <button>Saved to Collection</button>
+              {isFavorite ? (
+                <button onClick={removeToFavorite}>Remove to collection</button>
+              ) : (
+                <button onClick={addToFavorite}>Save to Collection</button>
+              )}
               <button>add a Review</button>
             </div>
 
@@ -110,6 +158,8 @@ const Detail = () => {
             gamesData.results.map((game, index) => {
               if (index < 5) {
                 return <Game key={index} game={game} />;
+              } else {
+                return null;
               }
             })
           ) : (

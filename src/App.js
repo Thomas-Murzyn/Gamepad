@@ -20,7 +20,7 @@ function App() {
       <Header userToken={userToken} />
       <Routes>
         <Route path={"/"} element={<Home />} />
-        <Route path={"/detail/:id"} element={<Detail />} />
+        <Route path={"/detail/:id"} element={<Detail token={userToken} />} />
         <Route path={"/search/:title"} element={<Search />} />
         <Route
           path={"/login"}
@@ -31,7 +31,10 @@ function App() {
           path={"/signup"}
           element={<SignUp setUserToken={setUserToken} />}
         />
-        <Route path={"/mycollection"} element={<MyCollection />} />
+        <Route
+          path={"/mycollection"}
+          element={<MyCollection token={userToken} />}
+        />
       </Routes>
     </Router>
   );
