@@ -1,16 +1,21 @@
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { useState, useEffect } from "react";
+
 import axios from "axios";
 import Game from "../components/Game";
 import Loading from "../components/Loading";
+import ReviewDetail from "../components/ReviewDetail";
 
 const Detail = ({ token }) => {
   const [data, setData] = useState(null);
   const [gamesData, setGamesData] = useState(null);
   const [isLoading, setIsloading] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [reviews, setReviews] = useState(null);
+  const [refresh, setRefresh] = useState(0);
 
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,16 +26,25 @@ const Detail = ({ token }) => {
           `http://localhost:4000/similar_game/${response.data.slug}`
         );
 
-        const thirdResponse = await axios.get(
-          `http://localhost:4000/favorite/getOne/${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+        if (token) {
+          const thirdResponse = await axios.get(
+            `http://localhost:4000/favorite/getOne/${id}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          setIsFavorite(thirdResponse.data.value);
+        }
+
+        const fourthResponse = await axios.get(
+          `http://localhost:4000/get_review/${id}`
         );
 
-        setIsFavorite(thirdResponse.data.value);
+        setReviews(fourthResponse.data);
+
         setData(response.data);
         setGamesData(secondResponse.data);
         setIsloading(true);
@@ -39,7 +53,7 @@ const Detail = ({ token }) => {
       }
     };
     fetchData();
-  }, [id, token, isFavorite]);
+  }, [id, token, isFavorite, refresh]);
 
   const addToFavorite = async () => {
     try {
@@ -89,9 +103,26 @@ const Detail = ({ token }) => {
               {isFavorite ? (
                 <button onClick={removeToFavorite}>Remove to collection</button>
               ) : (
-                <button onClick={addToFavorite}>Save to Collection</button>
+                <button
+                  onClick={() => {
+                    if (token) {
+                      addToFavorite();
+                    } else {
+                      navigate("/login");
+                    }
+                  }}
+                >
+                  Save to Collection
+                </button>
               )}
-              <button>add a Review</button>
+
+              <button
+                onClick={() => {
+                  token ? navigate(`/review/${id}`) : navigate("/login");
+                }}
+              >
+                Add a Review
+              </button>
             </div>
 
             <div className="detail-info-container">
@@ -166,6 +197,31 @@ const Detail = ({ token }) => {
             <h2>No similar games found for this game.</h2>
           )}
         </div>
+      </div>
+
+      <div className="reviews-container">
+        <h2>Reviews</h2>
+
+        {reviews.length > 0 ? (
+          <div className="review-wrapper">
+            {reviews.map((review, index) => {
+              return (
+                <ReviewDetail
+                  refresh={refresh}
+                  setRefresh={setRefresh}
+                  key={index}
+                  id={id}
+                  title={review.title}
+                  description={review.description}
+                  score={review.score}
+                  user={review.user}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <h3>No review for this Game</h3>
+        )}
       </div>
     </div>
   ) : (

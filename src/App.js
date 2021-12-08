@@ -9,8 +9,13 @@ import Login from "./pages/Login";
 import UserProfil from "./pages/UserProfil";
 import SignUp from "./pages/SignUp";
 import MyCollection from "./pages/MyCollection";
+import Review from "./pages/Review";
 import { useState } from "react";
 import Cookies from "js-cookie";
+
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
+library.add(faThumbsUp, faThumbsDown);
 
 function App() {
   const [userToken, setUserToken] = useState(Cookies.get("token") || null);
@@ -35,6 +40,7 @@ function App() {
           path={"/mycollection"}
           element={<MyCollection token={userToken} />}
         />
+        <Route path={"/review/:id"} element={<Review token={userToken} />} />
       </Routes>
     </Router>
   );
