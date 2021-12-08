@@ -67,6 +67,7 @@ const Detail = ({ token }) => {
         }
       );
       console.log(response.data);
+
       setIsFavorite(true);
     } catch (error) {
       console.log(error.message);
@@ -220,7 +221,7 @@ const Detail = ({ token }) => {
             })}
           </div>
         ) : (
-          <h3>No review for this Game</h3>
+          <h3 className="no-review">No review for this Game</h3>
         )}
       </div>
     </div>

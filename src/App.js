@@ -31,7 +31,10 @@ function App() {
           path={"/login"}
           element={<Login setUserToken={setUserToken} />}
         />
-        <Route path={"/user_profil"} element={<UserProfil />} />
+        <Route
+          path={"/user_profil"}
+          element={<UserProfil token={userToken} />}
+        />
         <Route
           path={"/signup"}
           element={<SignUp setUserToken={setUserToken} />}
