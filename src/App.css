@@ -510,3 +510,78 @@ textarea {
 }
 
 /* userprofil */
+
+.user-profil-container {
+  width: 90vw;
+  margin: 0 auto;
+}
+
+.user-profil-container h2 {
+  text-align: center;
+  margin-top: 100px;
+  font-size: 35px;
+  font-weight: 600;
+}
+
+.user-profil-wrapper {
+  margin: 30px auto;
+  width: 50%;
+  background-color: #404040;
+  border: 1px solid #404040;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+}
+
+.user-profil-wrapper img {
+  width: 100px;
+}
+
+.user-profil-wrapper p {
+  margin: 20px 0;
+  font-size: 25px;
+  color: white;
+}
+
+.user-profil-wrapper button {
+  margin: 20px 0;
+  font-size: 25px;
+  color: white;
+}
+
+.user-profil-wrapper button {
+  padding: 5px 10px;
+  background-color: black;
+  border: 1px solid white;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+.file {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  position: absolute;
+}
+
+.file-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.file-input label {
+  margin: 10px;
+  background-color: black;
+  border: 1px solid white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}

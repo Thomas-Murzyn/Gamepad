@@ -12,6 +12,7 @@ import MyCollection from "./pages/MyCollection";
 import Review from "./pages/Review";
 import { useState } from "react";
 import Cookies from "js-cookie";
+import MyReview from "./pages/MyReview";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
@@ -44,6 +45,7 @@ function App() {
           element={<MyCollection token={userToken} />}
         />
         <Route path={"/review/:id"} element={<Review token={userToken} />} />
+        <Route path={"/my_review"} element={<MyReview token={userToken} />} />
       </Routes>
     </Router>
   );
