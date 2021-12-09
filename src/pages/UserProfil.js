@@ -7,6 +7,9 @@ import { useNavigate } from "react-router";
 const UserProfil = ({ token }) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [picture, setPicture] = useState(null);
+  const [refresh, setRefresh] = useState(0);
+  const [userPicture, setUserPicture] = useState(null);
 
   const navigate = useNavigate();
 
@@ -20,6 +23,11 @@ const UserProfil = ({ token }) => {
         });
 
         console.log(response.data);
+
+        if (response.data.picture) {
+          setUserPicture(response.data.picture.secure_url);
+        }
+
         setData(response.data);
         setIsLoading(true);
       } catch (error) {
@@ -27,18 +35,56 @@ const UserProfil = ({ token }) => {
       }
     };
     fetchData();
-  }, [token]);
+  }, [token, refresh]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("picture", picture);
+
+    try {
+      const response = await axios.post(
+        `http://localhost:4000/user_profil_update`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log(response.data);
+      setPicture(null);
+      setRefresh(refresh + 1);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return isLoading ? (
     <div className="user-profil-container">
       <h2>Your profil</h2>
 
       <div className="user-profil-wrapper">
-        <div className="file-input">
-          <img src={userLogo} alt="" />
-          <input type="file" id="file" class="file" />
-          <label for="file">Change your picture</label>
-        </div>
+        <form onSubmit={handleSubmit} className="file-input">
+          <img
+            className={userPicture ? `user-img-update` : `user-img-basic`}
+            src={userPicture ? userPicture : userLogo}
+            alt=""
+          />
+          <input
+            onChange={(e) => setPicture(e.target.files[0])}
+            type="file"
+            id="file"
+            className="file"
+          />
+          <label htmlFor="file">Change your picture</label>
+          {picture && <p style={{ fontSize: "15px" }}>{picture.name}</p>}
+          {picture && (
+            <input className="input-sub" type="submit" value="Envoyer" />
+          )}
+        </form>
 
         <p>{data.username}</p>
 

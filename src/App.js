@@ -23,7 +23,7 @@ function App() {
 
   return (
     <Router>
-      <Header userToken={userToken} />
+      <Header token={userToken} />
       <Routes>
         <Route path={"/"} element={<Home />} />
         <Route path={"/detail/:id"} element={<Detail token={userToken} />} />

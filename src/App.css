@@ -61,8 +61,14 @@ nav {
   justify-content: space-around;
 }
 
+nav img {
+  border: 1px solid #1f2023;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 header button {
-  font-size: 20px;
+  font-size: 23px;
   padding: 5px 15px;
   background-color: #1f2023;
   border: 1px solid #1f2023;
@@ -535,8 +541,17 @@ textarea {
   padding: 15px;
 }
 
-.user-profil-wrapper img {
+.user-img-basic {
   width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.user-img-update {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .user-profil-wrapper p {
@@ -575,7 +590,24 @@ textarea {
   align-items: center;
 }
 .file-input label {
-  margin: 10px;
+  margin-top: 10px;
+  background-color: black;
+  border: 1px solid white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+input:hover + label,
+input:focus + label {
+  transform: scale(1.02);
+}
+
+.input-sub {
+  color: white;
   background-color: black;
   border: 1px solid white;
   padding: 5px 10px;
