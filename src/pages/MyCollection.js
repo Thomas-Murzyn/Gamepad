@@ -30,7 +30,7 @@ const MyCollection = ({ token }) => {
       <h2>My Collection</h2>
       <div className="my-collection-wrapper">
         {data.map((item, index) => {
-          return <FavoriteGame game={item} />;
+          return <FavoriteGame key={index} game={item} />;
         })}
       </div>
     </div>

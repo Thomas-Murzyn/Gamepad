@@ -3,7 +3,7 @@ import logo from "../assets/logo.png";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Header = ({ token }) => {
+const Header = ({ token, refreshApp }) => {
   const [picture, setUserPicture] = useState(null);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const Header = ({ token }) => {
       }
     };
     fetchData();
-  }, [token]);
+  }, [token, refreshApp]);
 
   const navigate = useNavigate();
 

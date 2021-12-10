@@ -17,7 +17,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/${currentPage}`
+          `http://localhost:4000/pagination/${currentPage}`
         );
 
         setData(response.data);

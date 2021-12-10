@@ -4,7 +4,7 @@ import Loading from "../components/Loading";
 import userLogo from "../assets/user-logo.png";
 import { useNavigate } from "react-router";
 
-const UserProfil = ({ token }) => {
+const UserProfil = ({ token, refreshApp, setRefreshApp }) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [picture, setPicture] = useState(null);
@@ -44,7 +44,7 @@ const UserProfil = ({ token }) => {
 
     try {
       const response = await axios.post(
-        `http://localhost:4000/user_profil_update`,
+        `http://localhost:4000/user_profil/update`,
         formData,
         {
           headers: {
@@ -57,6 +57,7 @@ const UserProfil = ({ token }) => {
       console.log(response.data);
       setPicture(null);
       setRefresh(refresh + 1);
+      setRefreshApp(refreshApp + 1);
     } catch (error) {
       console.log(error.message);
     }
