@@ -16,12 +16,15 @@ const SignUp = ({ setUserToken }) => {
     event.preventDefault();
     if (password === password2) {
       try {
-        const response = await axios.post(`http://localhost:4000/signup`, {
-          mail,
-          password,
-          username,
-          age,
-        });
+        const response = await axios.post(
+          `https://gamepad-by-thomas.herokuapp.com/signup`,
+          {
+            mail,
+            password,
+            username,
+            age,
+          }
+        );
 
         const token = response.data.token;
         Cookies.set("token", token, { expires: 7 });

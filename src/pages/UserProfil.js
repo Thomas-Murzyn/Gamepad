@@ -44,7 +44,7 @@ const UserProfil = ({ token, refreshApp, setRefreshApp }) => {
 
     try {
       const response = await axios.post(
-        `http://localhost:4000/user_profil/update`,
+        `https://gamepad-by-thomas.herokuapp.com/user_profil/update`,
         formData,
         {
           headers: {

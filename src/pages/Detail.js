@@ -20,15 +20,17 @@ const Detail = ({ token }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/game/${id}`);
+        const response = await axios.get(
+          `https://gamepad-by-thomas.herokuapp.com/game/${id}`
+        );
 
         const secondResponse = await axios.get(
-          `http://localhost:4000/similar_game/${response.data.slug}`
+          `https://gamepad-by-thomas.herokuapp.com/similar_game/${response.data.slug}`
         );
 
         if (token) {
           const thirdResponse = await axios.get(
-            `http://localhost:4000/favorite/getOne/${id}`,
+            `https://gamepad-by-thomas.herokuapp.com/favorite/getOne/${id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -40,7 +42,7 @@ const Detail = ({ token }) => {
         }
 
         const fourthResponse = await axios.get(
-          `http://localhost:4000/get_review/${id}`
+          `https://gamepad-by-thomas.herokuapp.com/get_review/${id}`
         );
 
         setReviews(fourthResponse.data);
@@ -58,7 +60,7 @@ const Detail = ({ token }) => {
   const addToFavorite = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:4000/favorite/${id}`,
+        `https://gamepad-by-thomas.herokuapp.com/favorite/${id}`,
         {},
         {
           headers: {
@@ -77,7 +79,7 @@ const Detail = ({ token }) => {
   const removeToFavorite = async () => {
     try {
       const response = await axios.post(
-        `http://localhost:4000/favorite/delete/${id}`,
+        `https://gamepad-by-thomas.herokuapp.com/favorite/delete/${id}`,
         {},
         {
           headers: {

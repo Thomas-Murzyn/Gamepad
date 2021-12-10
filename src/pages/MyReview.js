@@ -10,11 +10,14 @@ const MyReview = ({ token }) => {
   useEffect(() => {
     const fetchData = async (req, res) => {
       try {
-        const response = await axios.get(`http://localhost:4000/my_review`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          `https://gamepad-by-thomas.herokuapp.com/my_review`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         console.log(response.data);
         setReviews(response.data);
         setIsLoading(true);

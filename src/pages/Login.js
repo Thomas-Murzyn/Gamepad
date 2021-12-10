@@ -12,10 +12,13 @@ const Login = ({ setUserToken }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(`http://localhost:4000/signin`, {
-        mail,
-        password,
-      });
+      const response = await axios.post(
+        `https://gamepad-by-thomas.herokuapp.com/signin`,
+        {
+          mail,
+          password,
+        }
+      );
 
       const token = response.data.token;
       Cookies.set("token", token, { expires: 7 });

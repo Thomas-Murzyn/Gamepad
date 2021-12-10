@@ -16,7 +16,7 @@ const Review = ({ token }) => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        `http://localhost:4000/review/${id}`,
+        `https://gamepad-by-thomas.herokuapp.com/review/${id}`,
         {
           title,
           description: text,

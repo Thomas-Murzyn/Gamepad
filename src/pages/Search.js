@@ -23,7 +23,7 @@ const Search = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/search/${currentPage}?title=${title}&platforms=${platform}&genres=${type}&ordering=${ordering}`
+          `https://gamepad-by-thomas.herokuapp.com/search/${currentPage}?title=${title}&platforms=${platform}&genres=${type}&ordering=${ordering}`
         );
 
         setData(response.data);

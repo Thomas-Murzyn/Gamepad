@@ -9,11 +9,14 @@ const Header = ({ token, refreshApp }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/user_profil`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(
+          `https://gamepad-by-thomas.herokuapp.com/user_profil`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         if (response.data.picture) {
           setUserPicture(response.data.picture.secure_url);
