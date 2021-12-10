@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 import Game from "../components/Game";
 import Loading from "../components/Loading";
+import Pagination from "../components/Pagination";
 
 const Search = () => {
   const [data, setData] = useState(null);
@@ -12,6 +13,7 @@ const Search = () => {
   const [platform, setPlatform] = useState("");
   const [type, setType] = useState("");
   const [ordering, setOrdering] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const { title } = useParams();
 
@@ -21,7 +23,7 @@ const Search = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:4000/search?title=${title}&platforms=${platform}&genres=${type}&ordering=${ordering}`
+          `http://localhost:4000/search/${currentPage}?title=${title}&platforms=${platform}&genres=${type}&ordering=${ordering}`
         );
 
         setData(response.data);
@@ -31,7 +33,7 @@ const Search = () => {
       }
     };
     fetchData();
-  }, [title, platform, type, ordering]);
+  }, [title, platform, type, ordering, currentPage]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -133,6 +135,7 @@ const Search = () => {
           <h2>No results found for this game.</h2>
         )}
       </div>
+      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   ) : (
     <div className="loading-wrapper">

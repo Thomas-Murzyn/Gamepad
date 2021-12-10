@@ -9,13 +9,16 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState(null);
   const [search, setSearch] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/");
+        const response = await axios.get(
+          `http://localhost:4000/${currentPage}`
+        );
 
         setData(response.data);
         setIsLoading(true);
@@ -24,7 +27,7 @@ const Home = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [currentPage]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -49,7 +52,7 @@ const Home = () => {
         })}
       </div>
 
-      <Pagination data={data} />
+      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </main>
   ) : (
     <div className="loading-wrapper">
