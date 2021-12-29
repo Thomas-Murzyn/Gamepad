@@ -227,11 +227,11 @@ main {
   width: 100%;
   display: flex;
   gap: 30px;
-  font-size: 2.5vh;
+  font-size: 3vh;
 }
 
 .detail-info-container span {
-  font-size: 2.2vh;
+  font-size: 2.3vh;
 }
 
 .col-1 {
@@ -264,7 +264,7 @@ main {
   display: -webkit-box;
   -webkit-line-clamp: 3; /* number of lines to show */
   -webkit-box-orient: vertical;
-  font-size: 2.2vh;
+  font-size: 2.3vh;
 }
 
 /* details similar game section */
@@ -279,6 +279,7 @@ main {
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
@@ -707,5 +708,54 @@ input:focus + label {
 @media (max-width: 600px) {
   .game {
     width: calc((100% / 2) - 16px);
+  }
+}
+
+/* Detail */
+
+@media (max-width: 768px) {
+  .game-detail-container {
+    flex-direction: column;
+    height: inherit;
+  }
+
+  .game-detail-container img {
+    width: 100%;
+  }
+
+  .detail-game {
+    width: 100%;
+  }
+
+  .review-detail-wrapper {
+    width: 60%;
+  }
+}
+
+/* UserProfil */
+
+@media (max-width: 768px) {
+  .user-profil-wrapper {
+    width: 70%;
+  }
+}
+
+@media (max-width: 550px) {
+  .user-profil-wrapper {
+    width: 85%;
+  }
+}
+
+/* Login */
+
+@media (max-width: 1050px) {
+  .login-wrapper {
+    width: 40vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-wrapper {
+    width: 60vw;
   }
 }
