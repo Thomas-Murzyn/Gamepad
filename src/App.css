@@ -10,7 +10,7 @@ body {
 }
 
 h1 {
-  font-size: 45px;
+  font-size: 8vh;
   letter-spacing: 1.5px;
   margin-top: 30px;
   text-align: center;
@@ -18,11 +18,11 @@ h1 {
 }
 
 h2 {
-  font-size: 25px;
+  font-size: 5vh;
 }
 
 h3 {
-  font-size: 20px;
+  font-size: 3vh;
   font-weight: 500;
 }
 
@@ -42,12 +42,11 @@ header {
 }
 
 .header-wrapper img {
-  width: 50px;
+  width: 4.5vw;
 }
 
 .header-wrapper h2 {
   font-weight: 600;
-  font-size: 35px;
 }
 
 .header-wrapper div {
@@ -68,7 +67,7 @@ nav img {
 }
 
 header button {
-  font-size: 23px;
+  font-size: 3.5vh;
   padding: 5px 15px;
   background-color: #1f2023;
   border: 1px solid #1f2023;
@@ -99,7 +98,7 @@ main {
   height: 60px;
   width: 25%;
   padding: 0 10px;
-  font-size: 25px;
+  font-size: 3.5vh;
   border: 1px solid #1f2023;
   border-radius: 5px;
 }
@@ -151,7 +150,7 @@ main {
   border-radius: 10px;
   color: white;
   padding: 7px 10px 5px 10px;
-  font-size: 20px;
+  font-size: 3vh;
   margin: 0 10px;
   cursor: pointer;
   border-radius: 50%;
@@ -214,7 +213,7 @@ main {
   border-radius: 5px;
   color: white;
   padding: 10px 20px;
-  font-size: 15px;
+  font-size: 2.5vh;
   cursor: pointer;
 }
 
@@ -227,7 +226,11 @@ main {
   width: 100%;
   display: flex;
   gap: 30px;
-  font-size: 15px;
+  font-size: 2.5vh;
+}
+
+.detail-info-container span {
+  font-size: 2.2vh;
 }
 
 .col-1 {
@@ -260,6 +263,7 @@ main {
   display: -webkit-box;
   -webkit-line-clamp: 3; /* number of lines to show */
   -webkit-box-orient: vertical;
+  font-size: 2.2vh;
 }
 
 /* details similar game section */
@@ -303,13 +307,13 @@ main {
 }
 
 .review-detail-wrapper h4 {
-  font-size: 25px;
+  font-size: 3vh;
   font-weight: 700;
 }
 
 .review-detail-wrapper p,
 span {
-  font-size: 20px;
+  font-size: 3vh;
 }
 
 .review-detail-wrapper h4,
@@ -336,7 +340,7 @@ p {
 .no-review {
   padding-top: 20px;
   text-align: center;
-  font-size: 25px;
+  font-size: 4vh;
 }
 
 /* Search */
@@ -359,7 +363,7 @@ p {
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 2.5vh;
 }
 
 .select-container-1 select:nth-child(2) {
@@ -433,7 +437,7 @@ p {
   padding: 5px 0;
   width: 80%;
   color: white;
-  font-size: 20px;
+  font-size: 3vh;
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
     rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
@@ -454,7 +458,7 @@ p {
 
 .my-collection h2 {
   text-align: center;
-  font-size: 30px;
+
   margin: 30px 0 50px 0;
 }
 
@@ -513,7 +517,8 @@ textarea {
   border: 1px solid white;
   border-radius: 5px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
+  font-size: 2.5vh;
+  padding: 10px;
 }
 
 .review-input-wrapper input {
@@ -533,7 +538,7 @@ textarea {
   padding: 5px 0;
   width: 20%;
   color: white;
-  font-size: 20px;
+  font-size: 3vh;
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
     rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
@@ -550,7 +555,7 @@ textarea {
 .user-profil-container h2 {
   text-align: center;
   margin-top: 100px;
-  font-size: 35px;
+
   font-weight: 600;
 }
 
@@ -581,13 +586,13 @@ textarea {
 
 .user-profil-wrapper p {
   margin: 20px 0;
-  font-size: 25px;
+  font-size: 3.5vh;
   color: white;
 }
 
 .user-profil-wrapper button {
   margin: 20px 0;
-  font-size: 25px;
+  font-size: 3.5vh;
   color: white;
 }
 
@@ -642,3 +647,31 @@ input:focus + label {
     rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
     rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
+
+/* media queries */
+
+/* Header */
+
+@media (max-width: 1050px) {
+  nav {
+    width: 30%;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-wrapper {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav {
+    width: 100%;
+    justify-content: center;
+  }
+
+  nav img {
+    height: 5vh;
+  }
+}
+
+/* home */
