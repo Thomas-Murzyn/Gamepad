@@ -58,6 +58,7 @@ nav {
   width: 25%;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 nav img {
@@ -655,6 +656,7 @@ input:focus + label {
 @media (max-width: 1050px) {
   nav {
     width: 30%;
+    align-items: center;
   }
 }
 
@@ -667,6 +669,7 @@ input:focus + label {
   nav {
     width: 100%;
     justify-content: center;
+    align-items: center;
   }
 
   nav img {
@@ -674,4 +677,35 @@ input:focus + label {
   }
 }
 
+@media (max-width: 600px) {
+  nav img {
+    height: 4.5vh;
+  }
+}
+
 /* home */
+
+@media (max-width: 1050px) {
+  .searching-input input {
+    width: 35%;
+  }
+  .game {
+    width: calc((100% / 4) - 16px);
+  }
+}
+
+@media (max-width: 768px) {
+  .searching-input input {
+    width: 50%;
+  }
+
+  .game {
+    width: calc((100% / 3) - 16px);
+  }
+}
+
+@media (max-width: 600px) {
+  .game {
+    width: calc((100% / 2) - 16px);
+  }
+}
