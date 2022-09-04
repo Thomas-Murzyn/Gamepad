@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import Loading from "../components/Loading";
 import userLogo from "../assets/user-logo.png";
 import { useNavigate } from "react-router";
+import Cookies from "js-cookie";
 
-const UserProfil = ({ token, refreshApp, setRefreshApp }) => {
+const UserProfil = ({ token, refreshApp, setRefreshApp, setUserToken }) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [picture, setPicture] = useState(null);
@@ -66,6 +67,12 @@ const UserProfil = ({ token, refreshApp, setRefreshApp }) => {
     }
   };
 
+  const logOut = () => {
+    Cookies.remove("token");
+    setUserToken(null);
+    navigate("/");
+  };
+
   return isLoading ? (
     <div className="user-profil-container">
       <h2>Your profil</h2>
@@ -96,6 +103,7 @@ const UserProfil = ({ token, refreshApp, setRefreshApp }) => {
 
         <button onClick={() => navigate("/my_review")}>My reviews</button>
         <button onClick={() => navigate("/mycollection")}>My favorites</button>
+        <button onClick={logOut}>Sign out</button>
       </div>
     </div>
   ) : (

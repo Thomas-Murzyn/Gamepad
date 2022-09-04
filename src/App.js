@@ -40,6 +40,7 @@ function App() {
               token={userToken}
               refreshApp={refreshApp}
               setRefreshApp={setRefreshApp}
+              setUserToken={setUserToken}
             />
           }
         />
