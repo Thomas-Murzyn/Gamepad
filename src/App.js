@@ -43,12 +43,10 @@ const reducer = (state, action) => {
 };
 
 function App() {
+  // eslint-disable-next-line
   const [userToken, setUserToken] = useState();
-  const [picture, setUserPicture] = useState(null);
 
   const [user, dispatch] = useReducer(reducer, initialState);
-
-  console.log("🚀 ~ file: App.js ~ line 51 ~ App ~ user", user);
 
   useEffect(() => {
     setUserToken(user.userToken);
@@ -57,26 +55,13 @@ function App() {
   return (
     <Router>
       <UserContext.Provider value={{ user, userDispatch: dispatch }}>
-        <Header
-          picture={picture}
-          setUserPicture={setUserPicture}
-          token={userToken}
-        />
+        <Header />
         <Routes>
           <Route path={"/"} element={<Home />} />
-          <Route path={"/detail/:id"} element={<Detail token={userToken} />} />
+          <Route path={"/detail/:id"} element={<Detail />} />
           <Route path={"/search/:title"} element={<Search />} />
           <Route path={"/login"} element={<Login />} />
-          <Route
-            path={"/user_profil"}
-            element={
-              <UserProfil
-                token={userToken}
-                setUserToken={setUserToken}
-                setGlobalUserPicture={setUserPicture}
-              />
-            }
-          />
+          <Route path={"/user_profil"} element={<UserProfil />} />
           <Route path={"/signup"} element={<SignUp />} />
           <Route path={"/mycollection"} element={<MyCollection />} />
           <Route path={"/review/:id"} element={<Review />} />

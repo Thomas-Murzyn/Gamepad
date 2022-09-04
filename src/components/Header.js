@@ -5,28 +5,32 @@ import axios from "axios";
 import Avatar from "@mui/material/Avatar";
 import { UserContext } from "../App";
 
-const Header = ({ token, refreshApp, picture, setUserPicture }) => {
+const Header = () => {
   const userContext = useContext(UserContext);
   console.log(
     "🚀 ~ file: Header.js ~ line 10 ~ Header ~ userContext",
-    userContext
+    userContext.user
   );
 
   useEffect(() => {
     const fetchData = async () => {
-      if (token) {
+      if (userContext.user.userToken) {
         try {
           const response = await axios.get(
             `https://gamepad-by-thomas.herokuapp.com/user_profil`,
             {
               headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${userContext.user.userToken}`,
               },
             }
           );
 
           if (response.data.picture) {
-            setUserPicture(response.data.picture.secure_url);
+            const newUserPicture = {
+              type: "UPDATE_USER_PICTURE",
+              payload: response.data.picture.secure_url,
+            };
+            userContext.userDispatch(newUserPicture);
           }
         } catch (error) {
           console.log(error.message);
@@ -35,7 +39,7 @@ const Header = ({ token, refreshApp, picture, setUserPicture }) => {
     };
     fetchData();
     // eslint-disable-next-line
-  }, [token, refreshApp]);
+  }, [userContext.user.userToken]);
 
   const navigate = useNavigate();
 
@@ -50,19 +54,21 @@ const Header = ({ token, refreshApp, picture, setUserPicture }) => {
         <nav>
           <button
             onClick={() => {
-              token ? navigate("/mycollection") : navigate("/login");
+              userContext.user.userToken
+                ? navigate("/mycollection")
+                : navigate("/login");
             }}
           >
             Collection
           </button>
-          {token && picture ? (
+          {userContext.user.userToken && userContext.user.userPicture ? (
             <Avatar
               className="avatar"
               onClick={() => navigate("/user_profil")}
-              src={picture}
+              src={userContext.user.userPicture}
               alt="user"
             />
-          ) : token && !picture ? (
+          ) : userContext.user.userToken && !userContext.user.userPicture ? (
             <button
               onClick={() => navigate("/user_profil")}
               className="login-button"

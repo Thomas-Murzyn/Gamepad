@@ -1,24 +1,19 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Loading from "../components/Loading";
 import userLogo from "../assets/user-logo.png";
 import { useNavigate } from "react-router";
 import Cookies from "js-cookie";
 import Avatar from "@mui/material/Avatar";
+import { UserContext } from "../App";
 
-const UserProfil = ({
-  token,
-  refreshApp,
-  setRefreshApp,
-  setUserToken,
-  setGlobalUserPicture,
-}) => {
+const UserProfil = () => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [picture, setPicture] = useState(null);
   const [refresh, setRefresh] = useState(0);
-  const [userPicture, setUserPicture] = useState(null);
 
+  const userContext = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,7 +23,7 @@ const UserProfil = ({
           `https://gamepad-by-thomas.herokuapp.com/user_profil`,
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${userContext.user.userToken}`,
             },
           }
         );
@@ -36,7 +31,12 @@ const UserProfil = ({
         console.log(response.data);
 
         if (response.data.picture) {
-          setUserPicture(response.data.picture.secure_url);
+          const newUserPicture = {
+            type: "UPDATE_USER_PICTURE",
+            payload: response.data.picture.secure_url,
+          };
+          userContext.userDispatch(newUserPicture);
+          // setUserPicture(response.data.picture.secure_url);
         }
 
         setData(response.data);
@@ -46,7 +46,8 @@ const UserProfil = ({
       }
     };
     fetchData();
-  }, [token, refresh]);
+    // eslint-disable-next-line
+  }, [userContext.user.userToken, refresh]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,7 +60,7 @@ const UserProfil = ({
         formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${userContext.user.userToken}`,
             "Content-Type": "multipart/form-data",
           },
         }
@@ -68,7 +69,6 @@ const UserProfil = ({
       console.log(response.data);
       setPicture(null);
       setRefresh(refresh + 1);
-      setRefreshApp(refreshApp + 1);
     } catch (error) {
       console.log(error.message);
     }
@@ -76,8 +76,15 @@ const UserProfil = ({
 
   const logOut = () => {
     Cookies.remove("token");
-    setUserToken(null);
-    setGlobalUserPicture(null);
+    const newUserToken = { type: "UPDATE_USER_TOKEN", payload: null };
+    userContext.userDispatch(newUserToken);
+    // setUserToken(null);
+    const newUserPicture = {
+      type: "UPDATE_USER_PICTURE",
+      payload: null,
+    };
+    userContext.userDispatch(newUserPicture);
+    // setGlobalUserPicture(null);
     navigate("/");
   };
 
@@ -89,7 +96,11 @@ const UserProfil = ({
         <form onSubmit={handleSubmit} className="file-input">
           <Avatar
             className="avatar_profil"
-            src={userPicture ? userPicture : userLogo}
+            src={
+              userContext.user.userPicture
+                ? userContext.user.userPicture
+                : userLogo
+            }
             alt=""
           />
           <input

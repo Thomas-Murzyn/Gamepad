@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router";
-import { useState, useEffect } from "react";
-
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../App";
 import axios from "axios";
 import Game from "../components/Game";
 import Loading from "../components/Loading";
@@ -13,6 +13,8 @@ const Detail = ({ token }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [reviews, setReviews] = useState(null);
   const [refresh, setRefresh] = useState(0);
+
+  const userContext = useContext(UserContext);
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -28,12 +30,12 @@ const Detail = ({ token }) => {
           `https://gamepad-by-thomas.herokuapp.com/similar_game/${response.data.slug}`
         );
 
-        if (token) {
+        if (userContext.user.userToken) {
           const thirdResponse = await axios.get(
             `https://gamepad-by-thomas.herokuapp.com/favorite/getOne/${id}`,
             {
               headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${userContext.user.userToken}`,
               },
             }
           );
@@ -55,7 +57,7 @@ const Detail = ({ token }) => {
       }
     };
     fetchData();
-  }, [id, token, isFavorite, refresh]);
+  }, [id, userContext.user.userToken, isFavorite, refresh]);
 
   const addToFavorite = async () => {
     try {
@@ -64,7 +66,7 @@ const Detail = ({ token }) => {
         {},
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${userContext.user.userToken}`,
           },
         }
       );
@@ -83,7 +85,7 @@ const Detail = ({ token }) => {
         {},
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${userContext.user.userToken}`,
           },
         }
       );
@@ -108,7 +110,7 @@ const Detail = ({ token }) => {
               ) : (
                 <button
                   onClick={() => {
-                    if (token) {
+                    if (userContext.user.userToken) {
                       addToFavorite();
                     } else {
                       navigate("/login");
@@ -121,7 +123,9 @@ const Detail = ({ token }) => {
 
               <button
                 onClick={() => {
-                  token ? navigate(`/review/${id}`) : navigate("/login");
+                  userContext.user.userToken
+                    ? navigate(`/review/${id}`)
+                    : navigate("/login");
                 }}
               >
                 Add a Review
