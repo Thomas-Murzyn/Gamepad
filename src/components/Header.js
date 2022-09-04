@@ -1,11 +1,10 @@
 import { useNavigate } from "react-router";
 import logo from "../assets/logo.png";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
+import Avatar from "@mui/material/Avatar";
 
-const Header = ({ token, refreshApp }) => {
-  const [picture, setUserPicture] = useState(null);
-
+const Header = ({ token, refreshApp, picture, setUserPicture }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -26,6 +25,7 @@ const Header = ({ token, refreshApp }) => {
       }
     };
     fetchData();
+    // eslint-disable-next-line
   }, [token, refreshApp]);
 
   const navigate = useNavigate();
@@ -44,10 +44,11 @@ const Header = ({ token, refreshApp }) => {
               token ? navigate("/mycollection") : navigate("/login");
             }}
           >
-            My Collection
+            Collection
           </button>
           {token && picture ? (
-            <img
+            <Avatar
+              className="avatar"
               onClick={() => navigate("/user_profil")}
               src={picture}
               alt="user"
@@ -57,7 +58,7 @@ const Header = ({ token, refreshApp }) => {
               onClick={() => navigate("/user_profil")}
               className="login-button"
             >
-              My Profil
+              Profil
             </button>
           ) : (
             <button onClick={() => navigate("/login")} className="login-button">

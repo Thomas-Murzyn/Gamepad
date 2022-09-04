@@ -4,8 +4,15 @@ import Loading from "../components/Loading";
 import userLogo from "../assets/user-logo.png";
 import { useNavigate } from "react-router";
 import Cookies from "js-cookie";
+import Avatar from "@mui/material/Avatar";
 
-const UserProfil = ({ token, refreshApp, setRefreshApp, setUserToken }) => {
+const UserProfil = ({
+  token,
+  refreshApp,
+  setRefreshApp,
+  setUserToken,
+  setGlobalUserPicture,
+}) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [picture, setPicture] = useState(null);
@@ -70,6 +77,7 @@ const UserProfil = ({ token, refreshApp, setRefreshApp, setUserToken }) => {
   const logOut = () => {
     Cookies.remove("token");
     setUserToken(null);
+    setGlobalUserPicture(null);
     navigate("/");
   };
 
@@ -79,8 +87,8 @@ const UserProfil = ({ token, refreshApp, setRefreshApp, setUserToken }) => {
 
       <div className="user-profil-wrapper">
         <form onSubmit={handleSubmit} className="file-input">
-          <img
-            className={userPicture ? `user-img-update` : `user-img-basic`}
+          <Avatar
+            className="avatar_profil"
             src={userPicture ? userPicture : userLogo}
             alt=""
           />

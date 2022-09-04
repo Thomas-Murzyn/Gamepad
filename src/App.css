@@ -61,9 +61,10 @@ nav {
   align-items: center;
 }
 
-nav img {
-  border: 1px solid #1f2023;
-  border-radius: 50%;
+.avatar {
+  height: 60px !important;
+  width: 60px !important;
+  object-fit: contain;
   cursor: pointer;
 }
 
@@ -184,7 +185,6 @@ main {
 
 .game-detail-container {
   width: 100%;
-
   display: flex;
   gap: 20px;
 }
@@ -198,6 +198,7 @@ main {
 }
 
 .detail-game {
+  margin-top: 10px;
   width: 65%;
   display: flex;
   flex-direction: column;
@@ -573,7 +574,7 @@ textarea {
   padding: 15px;
 }
 
-.user-img-basic {
+/* .user-img-basic {
   width: 100px;
   height: 100px;
   object-fit: cover;
@@ -584,6 +585,13 @@ textarea {
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
+} */
+
+.avatar_profil {
+  height: 100px !important;
+  width: 100px !important;
+  object-fit: contain;
+  cursor: pointer;
 }
 
 .user-profil-wrapper p {

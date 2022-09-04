@@ -20,11 +20,17 @@ library.add(faThumbsUp, faThumbsDown);
 
 function App() {
   const [userToken, setUserToken] = useState(Cookies.get("token") || null);
+  const [picture, setUserPicture] = useState(null);
   const [refreshApp, setRefreshApp] = useState(1);
 
   return (
     <Router>
-      <Header refreshApp={refreshApp} token={userToken} />
+      <Header
+        picture={picture}
+        setUserPicture={setUserPicture}
+        refreshApp={refreshApp}
+        token={userToken}
+      />
       <Routes>
         <Route path={"/"} element={<Home />} />
         <Route path={"/detail/:id"} element={<Detail token={userToken} />} />
@@ -41,6 +47,7 @@ function App() {
               refreshApp={refreshApp}
               setRefreshApp={setRefreshApp}
               setUserToken={setUserToken}
+              setGlobalUserPicture={setUserPicture}
             />
           }
         />
