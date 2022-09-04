@@ -1,11 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import ReviewDetail from "../components/ReviewDetail";
 import Loading from "../components/Loading";
+import { UserContext } from "../App";
 
-const MyReview = ({ token }) => {
+const MyReview = () => {
   const [reviews, setReviews] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const userContext = useContext(UserContext);
 
   useEffect(() => {
     const fetchData = async (req, res) => {
@@ -14,7 +17,7 @@ const MyReview = ({ token }) => {
           `https://gamepad-by-thomas.herokuapp.com/my_review`,
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${userContext.user.userToken}`,
             },
           }
         );
@@ -26,7 +29,7 @@ const MyReview = ({ token }) => {
       }
     };
     fetchData();
-  }, [token]);
+  }, [userContext.user.userToken]);
 
   return isLoading ? (
     <div className="reviews-container">

@@ -1,13 +1,16 @@
 import { useParams, useNavigate } from "react-router";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
+import { UserContext } from "../App";
 
-const Review = ({ token }) => {
+const Review = () => {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
 
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const userContext = useContext(UserContext);
 
   // 2 A la soumission du formulaire faire une requête axios vers le backend
   // 3 Rediriger le client vers la fiche du jeu en question
@@ -23,7 +26,7 @@ const Review = ({ token }) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${userContext.user.userToken}`,
           },
         }
       );

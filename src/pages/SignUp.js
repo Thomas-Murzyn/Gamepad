@@ -1,14 +1,17 @@
 import axios from "axios";
 import { useNavigate } from "react-router";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Cookies from "js-cookie";
+import { UserContext } from "../App";
 
-const SignUp = ({ setUserToken }) => {
+const SignUp = () => {
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [username, setUserName] = useState("");
   const [age, setAge] = useState("");
+
+  const userContext = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -28,7 +31,8 @@ const SignUp = ({ setUserToken }) => {
 
         const token = response.data.token;
         Cookies.set("token", token, { expires: 7 });
-        setUserToken(token);
+        const newUserToken = { type: "UPDATE_USER_TOKEN", payload: token };
+        userContext.userDispatch(newUserToken);
         navigate("/");
       } catch (error) {
         console.log(error.message);

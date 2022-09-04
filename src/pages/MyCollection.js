@@ -1,11 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Loading from "../components/Loading";
 import FavoriteGame from "../components/FavoriteGame";
+import { UserContext } from "../App";
 
-const MyCollection = ({ token }) => {
+const MyCollection = () => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  const userContext = useContext(UserContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,7 +17,7 @@ const MyCollection = ({ token }) => {
           "https://gamepad-by-thomas.herokuapp.com/favorite/get",
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${userContext.user.userToken}`,
             },
           }
         );
@@ -26,7 +29,7 @@ const MyCollection = ({ token }) => {
       }
     };
     fetchData();
-  }, [token]);
+  }, [userContext.user.userToken]);
 
   return isLoading ? (
     <div className="my-collection">

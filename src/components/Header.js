@@ -1,27 +1,36 @@
 import { useNavigate } from "react-router";
 import logo from "../assets/logo.png";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
+import { UserContext } from "../App";
 
 const Header = ({ token, refreshApp, picture, setUserPicture }) => {
+  const userContext = useContext(UserContext);
+  console.log(
+    "🚀 ~ file: Header.js ~ line 10 ~ Header ~ userContext",
+    userContext
+  );
+
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `https://gamepad-by-thomas.herokuapp.com/user_profil`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+      if (token) {
+        try {
+          const response = await axios.get(
+            `https://gamepad-by-thomas.herokuapp.com/user_profil`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
 
-        if (response.data.picture) {
-          setUserPicture(response.data.picture.secure_url);
+          if (response.data.picture) {
+            setUserPicture(response.data.picture.secure_url);
+          }
+        } catch (error) {
+          console.log(error.message);
         }
-      } catch (error) {
-        console.log(error.message);
       }
     };
     fetchData();
