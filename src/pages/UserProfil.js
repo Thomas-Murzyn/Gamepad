@@ -93,6 +93,7 @@ const UserProfil = () => {
       <h2>Your profil</h2>
 
       <div className="user-profil-wrapper">
+        <h3>Welcome {data.username}</h3>
         <form onSubmit={handleSubmit} className="file-input">
           <Avatar
             className="avatar_profil"
@@ -115,10 +116,6 @@ const UserProfil = () => {
             <input className="input-sub" type="submit" value="Envoyer" />
           )}
         </form>
-
-        <p>{data.username}</p>
-
-        <p>{data.description}</p>
 
         <button onClick={() => navigate("/my_review")}>My reviews</button>
         <button onClick={() => navigate("/mycollection")}>My favorites</button>
