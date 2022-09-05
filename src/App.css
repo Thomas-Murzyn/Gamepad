@@ -1,4 +1,4 @@
-/* Other rules */
+/* ------------- GENERAL RULES -------------------- */
 * {
   box-sizing: border-box;
 }
@@ -26,7 +26,7 @@ h3 {
   font-weight: 500;
 }
 
-/* Header */
+/* ------------- HEADER  -------------------- */
 
 header {
   border-bottom: #ff4655 1px solid;
@@ -82,7 +82,8 @@ header button {
   border: 1px solid #ff4655;
   border-radius: 10px;
 }
-/* main */
+
+/* ------------- MAIN  -------------------- */
 
 main {
   width: 90vw;
@@ -169,7 +170,7 @@ main {
   color: black;
 }
 
-/* detail */
+/* ------------- DETAIL  -------------------- */
 
 .detail-wrapper {
   width: 90vw;
@@ -273,8 +274,6 @@ main {
   font-size: 2.3vh;
 }
 
-/* details similar game section */
-
 .similar-games {
   margin-top: 50px;
   text-align: center;
@@ -289,7 +288,7 @@ main {
   gap: 20px;
 }
 
-/* detail / reviews */
+/* ------------- REVIEWS  -------------------- */
 
 .reviews-container {
   margin: 50px auto;
@@ -351,7 +350,7 @@ p {
   font-size: 4vh;
 }
 
-/* Search */
+/* ------------- SEARCH  -------------------- */
 
 .search-result-wrapper {
   width: 90vw;
@@ -396,7 +395,7 @@ p {
   margin-top: 10px;
 }
 
-/* Login */
+/* ------------- LOGIN  -------------------- */
 
 .login-wrapper {
   width: 30vw;
@@ -457,7 +456,7 @@ p {
   cursor: pointer;
 }
 
-/* My collection */
+/* ------------- COLLECTION  -------------------- */
 
 .my-collection {
   width: 90vw;
@@ -478,7 +477,7 @@ p {
   gap: 40px 20px;
 }
 
-/* Review */
+/* ------------- PERSONNAL REVIEW  -------------------- */
 
 .review-wrapper {
   width: 90vw;
@@ -553,7 +552,7 @@ textarea {
     rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 
-/* userprofil */
+/* ------------- USER PROFIL  -------------------- */
 
 .user-profil-container {
   width: 90vw;
@@ -650,9 +649,9 @@ input:focus + label {
     rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 }
 
-/* media queries */
+/* ------------- MEDIA QUERIES  -------------------- */
 
-/* Header */
+/* ------------- MEDIA QUERIES HEADER  -------------------- */
 
 @media (max-width: 1050px) {
   nav {
@@ -684,7 +683,7 @@ input:focus + label {
   }
 }
 
-/* home */
+/* ------------- MEDIA QUERIES HOME  -------------------- */
 
 @media (max-width: 1050px) {
   .searching-input input {
@@ -711,7 +710,7 @@ input:focus + label {
   }
 }
 
-/* Detail */
+/* ------------- MEDIA QUERIES DETAIL  -------------------- */
 
 @media (max-width: 768px) {
   .game-detail-container {
@@ -732,7 +731,7 @@ input:focus + label {
   }
 }
 
-/* UserProfil */
+/* ------------- MEDIA QUERIES USER PROFIL  -------------------- */
 
 @media (max-width: 768px) {
   .user-profil-wrapper {
@@ -746,7 +745,7 @@ input:focus + label {
   }
 }
 
-/* Login */
+/* ------------- MEDIA QUERIES LOGIN  -------------------- */
 
 @media (max-width: 1050px) {
   .login-wrapper {
