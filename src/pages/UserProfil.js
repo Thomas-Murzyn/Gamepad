@@ -20,7 +20,7 @@ const UserProfil = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://gamepad-by-thomas.herokuapp.com/user_profil`,
+          `https://gamepad-by-thomas.onrender.com/user_profil`,
           {
             headers: {
               Authorization: `Bearer ${userContext.user.userToken}`,
@@ -56,7 +56,7 @@ const UserProfil = () => {
 
     try {
       const response = await axios.post(
-        `https://gamepad-by-thomas.herokuapp.com/user_profil/update`,
+        `https://gamepad-by-thomas.onrender.com/user_profil/update`,
         formData,
         {
           headers: {

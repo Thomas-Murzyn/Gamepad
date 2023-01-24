@@ -19,7 +19,7 @@ const Review = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        `https://gamepad-by-thomas.herokuapp.com/review/${id}`,
+        `https://gamepad-by-thomas.onrender.com/review/${id}`,
         {
           title,
           description: text,

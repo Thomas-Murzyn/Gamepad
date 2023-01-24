@@ -13,7 +13,7 @@ const ReviewDetail = ({
   const plusScore = async () => {
     try {
       const response = await axios.post(
-        `https://gamepad-by-thomas.herokuapp.com/add_score_review/${id}`,
+        `https://gamepad-by-thomas.onrender.com/add_score_review/${id}`,
         {
           user,
           score: 1,
@@ -30,7 +30,7 @@ const ReviewDetail = ({
   const moinsScore = async () => {
     try {
       const response = await axios.post(
-        `https://gamepad-by-thomas.herokuapp.com/less_score_review/${id}`,
+        `https://gamepad-by-thomas.onrender.com/less_score_review/${id}`,
         {
           user,
           score: 1,

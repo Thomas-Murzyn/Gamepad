@@ -20,7 +20,7 @@ const SignUp = () => {
     if (password === password2) {
       try {
         const response = await axios.post(
-          `https://gamepad-by-thomas.herokuapp.com/signup`,
+          `https://gamepad-by-thomas.onrender.com/signup`,
           {
             mail,
             password,

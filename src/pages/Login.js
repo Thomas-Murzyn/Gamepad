@@ -16,7 +16,7 @@ const Login = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        `https://gamepad-by-thomas.herokuapp.com/signin`,
+        `https://gamepad-by-thomas.onrender.com/signin`,
         {
           mail,
           password,

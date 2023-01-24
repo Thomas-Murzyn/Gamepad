@@ -14,7 +14,7 @@ const MyCollection = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://gamepad-by-thomas.herokuapp.com/favorite/get",
+          "https://gamepad-by-thomas.onrender.com/favorite/get",
           {
             headers: {
               Authorization: `Bearer ${userContext.user.userToken}`,

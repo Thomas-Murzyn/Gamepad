@@ -17,7 +17,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://gamepad-by-thomas.herokuapp.com/pagination/${currentPage}`
+          `https://gamepad-by-thomas.onrender.com/pagination/${currentPage}`
         );
 
         setData(response.data);

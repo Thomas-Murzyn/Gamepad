@@ -14,7 +14,7 @@ const MyReview = () => {
     const fetchData = async (req, res) => {
       try {
         const response = await axios.get(
-          `https://gamepad-by-thomas.herokuapp.com/my_review`,
+          `https://gamepad-by-thomas.onrender.com/my_review`,
           {
             headers: {
               Authorization: `Bearer ${userContext.user.userToken}`,
